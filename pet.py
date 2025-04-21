@@ -76,3 +76,17 @@ def create_pet():
     name = input(f"What would you like to name your {pet_type}? ")
 
     return Pet(name=name, pet_type=pet_type)
+
+
+def main():
+    pet = create_pet()
+
+    menu = {
+        "E": ("Feed your pet", pet.eat),
+        "S": ("Let your pet sleep", pet.sleep),
+        "P": ("Play with your pet", pet.play),
+        "T": ("Train a new trick", lambda: pet.train(input("Enter a trick: "))),
+        "K": ("Show learned tricks", pet.show_tricks),
+        "G": ("Get pet status", pet.get_status),
+        "Q": ("Quit", None)
+    }
