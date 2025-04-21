@@ -22,3 +22,57 @@ class Pet:
         self.happiness = min(10, self.happiness + 1)
         print(
             f"{self.name} just ate! Hunger: {self.hunger}, Happiness: {self.happiness}")
+
+    def sleep(self):
+        self.energy = min(10, self.energy + 5)
+        print(f"{self.name} took a nap. Energy: {self.energy}")
+
+    def play(self):
+        if self.energy >= 2:
+            self.energy -= 2
+            self.happiness = min(10, self.happiness + 2)
+            self.hunger = min(10, self.hunger + 1)
+            print(
+                f"{self.name} played! Energy: {self.energy}, Happiness: {self.happiness}, Hunger: {self.hunger}")
+        else:
+            print(f"{self.name} is too tired to play. Let them rest!")
+
+    def train(self, trick):
+        if trick.strip():
+            if trick in self.tricks:
+                print(f"{self.name} already knows how to {trick}!")
+        else:
+            self.tricks.append(trick)
+            print(f"{self.name} learned a new trick: {trick}!")
+
+    def show_tricks(self):
+        print(f"\n{self.name}'s Learned Tricks:")
+        if self.tricks:
+            for i, trick in enumerate(self.tricks, 1):
+                print(f"{i}. {trick}")
+        else:
+            print("No tricks learned yet.")
+
+    def get_status(self):
+        print("\n--- Pet Status ---")
+        print(f"Name: {self.name}")
+        print(f"Type: {self.type}")
+        print(f"Toys: {self.toys}")
+        print(f"Hunger: {self.hunger}")
+        print(f"Energy: {self.energy}")
+        print(f"Happiness: {self.happiness}")
+        print(f"Tricks: {', '.join(self.tricks) if self.tricks else 'None'}")
+        print("------------------\n")
+
+
+def create_pet():
+    pet_type = ""
+    valid_types = ["cat", "dog", "fish"]
+
+    while pet_type not in valid_types:
+        print("Choose a pet type (cat, dog, fish):")
+        pet_type = input("> ").lower()
+
+    name = input(f"What would you like to name your {pet_type}? ")
+
+    return Pet(name=name, pet_type=pet_type)
