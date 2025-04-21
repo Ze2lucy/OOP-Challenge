@@ -90,3 +90,22 @@ def main():
         "G": ("Get pet status", pet.get_status),
         "Q": ("Quit", None)
     }
+
+    while True:
+        print("\nWhat would you like to do?")
+        for key, (desc, _) in menu.items():
+            print(f"{key} - {desc}")
+
+        choice = input("Choose an option: ").upper()
+
+        if choice == "Q":
+            print(f"Goodbye! {pet.name} waves a paw/flipper/fin 👋")
+            break
+        elif choice in menu:
+            menu[choice][1]()
+        else:
+            print("Invalid choice. Please try again.")
+
+
+if __name__ == "__main__":
+    main()
